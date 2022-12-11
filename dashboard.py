@@ -1,3 +1,6 @@
+### author : M Z Muhammed Jaabir
+### python version : Python 3.8.2
+
 import streamlit as st 
 import plotly.express as px
 import pandas as pd 
@@ -6,7 +9,7 @@ from yahoofinancials import YahooFinancials
 import scipy
 import plotly.figure_factory as ff
 import os
-from about import Contents, contributors, info
+from about import Contents, info
 
 
 def get_yr(company, gdf, col = 'yor'):
@@ -62,7 +65,7 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 def main():
-    menu = ["Dataset", 'Hypothesis I', 'Hypothesis II', 'Hypothesis III', 'About us']
+    menu = ["Dataset", 'Hypothesis I', 'Hypothesis II', 'Hypothesis III', 'About us', 'Source links']
     choice = st.sidebar.selectbox("Menu", menu)
     if 'df' not in st.session_state:
         st.session_state.df = pd.read_csv(os.path.join('datasets', 'final_data.csv'))
@@ -215,7 +218,7 @@ def main():
                     The hypothesis is tested to be positive as the global index of the countries for both low and high carbon footprint aligns with our claims which is based on our dataset  
                     </h6>
                 ''', unsafe_allow_html=True)
-    else:
+    elif choice == 'About us':
         st.markdown('''
                     <center><h2>Team - 99</h2></center>
                     ''', unsafe_allow_html = True)
@@ -226,7 +229,27 @@ def main():
         info('Talha abdurrahmaan (Backend/Dev-Ops)', 'https://github.com/Talha-Altair', 'https://www.linkedin.com/in/talhaabdurrahman/', 'assets/alt.jfif')
         info('M Z Muhammed Jaabir (AI/ML)', 'https://github.com/jaaabir', 'https://www.linkedin.com/in/muhammed-jaabir-94022019b/', 'assets/jab.jpg')
         info('Sashank Gs (AI/ML)', 'https://github.com/sashank24', 'https://www.linkedin.com/in/sashank-gs-97b1b91a4/', 'assets/sas.jpg')
+    
+    else:
+        nlinks = [
+            ('Structuring the datasets', os.path.join('.', 'structuring.ipynb')),
+            ('Exploratory data analysis', os.path.join('.', 'eda.ipynb')),
+        ]
         
+        st.markdown('<h3>Notebook source</h3>', unsafe_allow_html=True)
+        for cap,path in nlinks:
+            st.markdown(f'''
+                    <a href='{path}'>
+                        <h4><p>{cap}</p></h4>
+                    </a>
+                    ''', unsafe_allow_html=True)
+        
+        st.markdown('<h3>App demo link</h3>', unsafe_allow_html=True)
+        # st.markdown(f'''
+        #             <a href='{path}'>
+        #                 <h4><p>FLOOD</p></h4>
+        #             </a>
+        #             ''', unsafe_allow_html=True)
         
 if __name__ == "__main__":
     streamlit_style = """
