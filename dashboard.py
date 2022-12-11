@@ -232,11 +232,11 @@ def main():
     
     else:
         nlinks = [
-            ('Structuring the datasets', os.path.join('.', 'structuring.ipynb')),
-            ('Exploratory data analysis', os.path.join('.', 'eda.ipynb')),
+            ('Structuring the datasets', 'https://colab.research.google.com/drive/1NBwwc92Tzz55hbBQCpaj7LI8OCcVl841?usp=sharing'),
+            ('Exploratory data analysis', 'https://colab.research.google.com/drive/1NL3XuBNh12LyrxYyekuHDyvT9TcVpdHx?usp=sharing'),
         ]
         
-        st.markdown('<h3>Notebook source</h3>', unsafe_allow_html=True)
+        st.markdown('<h3>Notebooks Links</h3>', unsafe_allow_html=True)
         for cap,path in nlinks:
             st.markdown(f'''
                     <a href='{path}'>
